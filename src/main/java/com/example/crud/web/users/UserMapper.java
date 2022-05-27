@@ -10,7 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import com.example.crud.base.ComboDTO;
+import com.example.crud.base.OptionDTO;
 import com.example.crud.base.SpecUtil;
 import com.example.crud.model.Post;
 import com.example.crud.model.Post_;
@@ -47,14 +47,14 @@ public class UserMapper {
 	public UserListItemDTO toListItemDto(User entity) {
 		var dto = this.mapper.map(entity, UserListItemDTO.class);
 		dto.setPosts(entity.getPosts().isEmpty() ? null
-				: entity.getPosts().stream().map(ComboDTO::of).collect(Collectors.toList()));
+				: entity.getPosts().stream().map(OptionDTO::of).collect(Collectors.toList()));
 		return dto;
 	}
 
 	public UserFormDTO toFormDto(User entity) {
 		var dto = this.mapper.map(entity, UserFormDTO.class);
 		dto.setPosts(entity.getPosts().isEmpty() ? null
-				: entity.getPosts().stream().map(ComboDTO::of).collect(Collectors.toList()));
+				: entity.getPosts().stream().map(OptionDTO::of).collect(Collectors.toList()));
 		return dto;
 	}
 

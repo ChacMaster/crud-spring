@@ -3,7 +3,7 @@ package com.example.crud.web.posts;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-import com.example.crud.base.ComboDTO;
+import com.example.crud.base.OptionDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +18,5 @@ public class PostListItemDTO implements Serializable {
 	private LocalDateTime updatedAt;
 	private String title;
 	private String body;
-	private ComboDTO<Long> user;
+	private OptionDTO<Long> user;
 }

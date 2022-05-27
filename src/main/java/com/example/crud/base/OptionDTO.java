@@ -9,16 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ComboDTO<I> implements Serializable {
+public class OptionDTO<I> implements Serializable {
 
 	private static final long serialVersionUID = -914698292833381449L;
 	private I id;
 	private String descricao;
 
-	public static <I> ComboDTO<I> of(BaseEntity<I> entity) {
+	public static <I> OptionDTO<I> of(BaseEntity<I> entity) {
 		if (entity == null || entity.getId() == null) {
 			return null;
 		}
-		return new ComboDTO<>(entity.getId(), entity.getDesc());
+		return new OptionDTO<>(entity.getId(), entity.getDesc());
 	}
 }
