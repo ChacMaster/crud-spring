@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:~/crud-thymeleaf;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa: 
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    open-in-view: true
+    hibernate.ddl-auto: update
+#    hibernate.ddl-auto: create-drop
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    serialization: 
+      write-dates-as-timestamps: false
+  main.lazy-initialization: true
+  
+server.port: 8080
+
+springdoc.swagger-ui.path: /swagger-ui
+#springdoc.swagger-ui.disable-swagger-default-url: true
