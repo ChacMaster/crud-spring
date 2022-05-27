@@ -19,8 +19,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Formula;
 
-import com.example.crud.base.AuthUtil;
 import com.example.crud.base.BaseEntity;
+import com.example.crud.util.AuthUtil;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

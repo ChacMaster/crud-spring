@@ -1,4 +1,4 @@
-package com.example.crud.base;
+package com.example.crud.util;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

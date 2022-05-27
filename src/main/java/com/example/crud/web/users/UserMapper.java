@@ -11,11 +11,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import com.example.crud.base.OptionDTO;
-import com.example.crud.base.SpecUtil;
 import com.example.crud.model.Post;
 import com.example.crud.model.Post_;
 import com.example.crud.model.User;
 import com.example.crud.model.User_;
+import com.example.crud.util.SpecUtil;
 
 import lombok.AllArgsConstructor;
 

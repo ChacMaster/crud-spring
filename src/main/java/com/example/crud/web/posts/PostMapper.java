@@ -10,10 +10,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import com.example.crud.base.OptionDTO;
-import com.example.crud.base.SpecUtil;
 import com.example.crud.model.Post;
 import com.example.crud.model.Post_;
 import com.example.crud.model.User;
+import com.example.crud.util.SpecUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -46,7 +46,7 @@ public class PostMapper {
 		entity.setId(dto.getId());
 		entity.setTitle(dto.getTitle());
 		entity.setBody(dto.getBody());
-		entity.setUser(Optional.ofNullable(dto.getUser()).map(OptionDTO::getId).map(User::new).orElse(null));
+		entity.setUser(Optional.ofNullable(dto.getUser()).map(OptionDTO::getKey).map(User::new).orElse(null));
 		return entity;
 	}
 }

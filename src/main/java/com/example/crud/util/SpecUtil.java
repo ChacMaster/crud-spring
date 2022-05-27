@@ -1,4 +1,4 @@
-package com.example.crud.base;
+package com.example.crud.util;
 
 import java.util.ArrayList;
 import java.util.Collection;

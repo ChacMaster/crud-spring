@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 public class OptionDTO<I> implements Serializable {
 
 	private static final long serialVersionUID = -914698292833381449L;
-	private I id;
-	private String descricao;
+	private I key;
+	private String value;
 
 	public static <I> OptionDTO<I> of(BaseEntity<I> entity) {
 		if (entity == null || entity.getId() == null) {
