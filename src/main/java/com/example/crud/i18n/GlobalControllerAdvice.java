@@ -45,7 +45,7 @@ public class GlobalControllerAdvice extends ResponseEntityExceptionHandler {
 		var stacktrace = Arrays.toString(ex.getStackTrace());
 		LOG.warn(message);
 		LOG.warn(stacktrace);
-		return this.handleExceptionInternal(ex, Arrays.asList(message), new HttpHeaders(),
+		return this.handleExceptionInternal(ex, ex, new HttpHeaders(),
 				HttpStatus.EXPECTATION_FAILED, request);
 	}
 

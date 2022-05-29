@@ -18,7 +18,7 @@ public class LoadTestDataController {
 	private final LoadTestDataService service;
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping
+	@PostMapping("/posts")
 	public String store() {
 		return this.service.loadPosts() + " posts cadastrados!";
 	}

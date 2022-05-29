@@ -19,6 +19,8 @@
 		<springdoc.version>1.6.8</springdoc.version>
 		<modelmapper.version>3.1.0</modelmapper.version>
 		<lorem.version>2.1</lorem.version>
+		<apache.poi.version>5.2.2</apache.poi.version>
+		<jasper.version>6.19.1</jasper.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -100,6 +102,21 @@
 			<groupId>com.thedeanda</groupId>
 			<artifactId>lorem</artifactId>
 			<version>${lorem.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>${apache.poi.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>${jasper.version}</version>
 		</dependency>
 	</dependencies>
 

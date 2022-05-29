@@ -1,15 +1,19 @@
 package com.example.crud.web.posts;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.criteria.Predicate;
 
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import com.example.crud.base.OptionDTO;
+import com.example.crud.base.Xlsx;
+import com.example.crud.i18n.MessageFactory;
 import com.example.crud.model.Post;
 import com.example.crud.model.Post_;
 import com.example.crud.model.User;
@@ -48,5 +52,39 @@ public class PostMapper {
 		entity.setBody(dto.getBody());
 		entity.setUser(Optional.ofNullable(dto.getUser()).map(OptionDTO::getKey).map(User::new).orElse(null));
 		return entity;
+	}
+
+	public Xlsx toExcel(List<Post> data) {
+		var xlsx = new Xlsx("posts");
+		var wb = xlsx.getWorkbook();
+		var cellStyle = wb.createCellStyle();
+		cellStyle.setVerticalAlignment(VerticalAlignment.TOP);
+		var dtTimeStyle = wb.createCellStyle();
+		dtTimeStyle.setVerticalAlignment(VerticalAlignment.TOP);
+		dtTimeStyle.setDataFormat(wb.getCreationHelper().createDataFormat().getFormat("dd/MM/yyyy hh:mm"));
+
+		var sheet = wb.createSheet("Posts");
+		sheet.createFreezePane(0, 1, 0, 1);
+		var line = sheet.getLastRowNum() + 1;
+		var row = sheet.createRow(line++);
+		var column = 0;
+
+		var labelPrefix = "post.";
+		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.ID));
+		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.TITLE));
+		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.BODY));
+		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.CREATED_AT));
+		for (var item : data) {
+			column = 0;
+			row = sheet.createRow(line++);
+			xlsx.createCell(row, column++, cellStyle).setCellValue(item.getId());
+			xlsx.createCell(row, column++, cellStyle).setCellValue(item.getTitle());
+			xlsx.createCell(row, column++, cellStyle).setCellValue(item.getBody());
+			xlsx.createCell(row, column++, dtTimeStyle).setCellValue(item.getCreatedAt());
+		}
+		sheet.autoSizeColumn(1);
+		sheet.setColumnWidth(2, 50 * 256);
+		sheet.autoSizeColumn(3);
+		return xlsx;
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -83,5 +84,14 @@ public class PostController {
 	@DeleteMapping("/{id}")
 	public void destroy(@PathVariable Long id) {
 		this.service.deleteById(id);
+	}
+
+	@GetMapping(value = "/list.xlsx")
+	@SortAsQueryParam
+	public ResponseEntity<byte[]> exportExcel(Optional<PostFilter> filter,
+			@Parameter(hidden = true) @SortDefault(sort = "id", direction = Direction.ASC) Sort sort) {
+		var spec = filter.map(mapper::toSpec).orElse(null);
+		var data = this.service.findAll(spec, sort);
+		return this.mapper.toExcel(data).export();
 	}
 }

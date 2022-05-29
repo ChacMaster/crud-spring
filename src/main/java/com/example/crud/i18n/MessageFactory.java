@@ -3,7 +3,7 @@ package com.example.crud.i18n;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
-import com.example.crud.config.ContextProvider;
+import com.example.crud.util.ContextUtil;
 
 public class MessageFactory {
 
@@ -15,7 +15,7 @@ public class MessageFactory {
 
 	private static MessageSource getMessageSource() {
 		if (messageSource == null)
-			messageSource = ContextProvider.getBean("messageSource", MessageSource.class);
+			messageSource = ContextUtil.getBean("messageSource", MessageSource.class);
 		return messageSource;
 	}
 
@@ -25,5 +25,9 @@ public class MessageFactory {
 
 	public static String getMessage(Messages message, String... args) {
 		return getMessageSource().getMessage(message.toString(), args, LocaleContextHolder.getLocale());
+	}
+
+	public static String getLabel(String label) {
+		return getMessageSource().getMessage(label, null, LocaleContextHolder.getLocale());
 	}
 }

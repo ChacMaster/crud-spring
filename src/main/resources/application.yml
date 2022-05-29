@@ -16,6 +16,20 @@ spring:
     serialization: 
       write-dates-as-timestamps: false
   main.lazy-initialization: true
+  messages:
+    basename: i18n/messages,i18n/labels
+    encoding: ISO-8859-1
+  mvc.format.date-time: iso
+  profiles:
+    active:
+      default
+  servlet:
+    multipart:
+      max-file-size: 15MB
+      max-request-size: 15MB
+  sql:
+    init:
+      continue-on-error: true
   
 server.port: 8080
 
