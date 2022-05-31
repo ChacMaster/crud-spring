@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body style="margin-left:50px">
+    <h:form>
+        <h2>Post Page Example</h2>
+
+        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" keepAlive="false"/>
+
+        <div class="p-d-flex p-jc-between">
+            <div>
+                <h5>Standard</h5>
+                <p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="xls" target="tbl" fileName="posts"/>
+                </p:commandButton>
+
+                <p:commandButton value="XLSX" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="xlsxstream" target="tbl" fileName="posts"/>
+                </p:commandButton>
+
+                <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="pdf" target="tbl" fileName="posts"/>
+                </p:commandButton>
+
+                <p:commandButton value="CSV" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="csv" target="tbl" fileName="posts" />
+                </p:commandButton>
+
+                <p:commandButton value="XML" styleClass="p-mr-2 p-mb-2">
+                    <p:dataExporter type="xml" target="tbl" fileName="posts"/>
+                </p:commandButton>
+            </div>
+
+            <div>
+                <h5>Page Only</h5>
+                <p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+                    <p:dataExporter type="xls" target="tbl" fileName="posts" pageOnly="true"/>
+                </p:commandButton>
+
+                <p:commandButton value="XLSX" styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+                    <p:dataExporter type="xlsxstream" target="tbl" fileName="posts" pageOnly="true"/>
+                </p:commandButton>
+
+                <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+                    <p:dataExporter type="pdf" target="tbl" fileName="posts" pageOnly="true"/>
+                </p:commandButton>
+
+                <p:commandButton value="CSV" styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+                    <p:dataExporter type="csv" target="tbl" fileName="posts" pageOnly="true"/>
+                </p:commandButton>
+
+                <p:commandButton value="XML" styleClass="p-mr-2 p-mb-2 ui-button-outlined">
+                    <p:dataExporter type="xml" target="tbl" fileName="posts" pageOnly="true"/>
+                </p:commandButton>
+            </div>
+        </div>
+
+        <p:dataTable id="tbl" var="post" value="#{postPageController.posts}"
+                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                     paginator="true" rows="10" styleClass="p-mt-2">
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Title"/>
+                </f:facet>
+                <h:outputText value="#{post.title}"/>
+            </p:column>
+
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Body"/>
+                </f:facet>
+                <h:outputText value="#{post.body}"/>
+            </p:column>
+
+            <p:column  styleClass="p-text-center">
+                <f:facet name="header">
+                    <h:outputText value="Desc"/>
+                </f:facet>
+                <h:outputText value="#{post.desc}"/>
+            </p:column>
+
+            <p:column styleClass="p-text-right">
+                <f:facet name="header">
+                    <h:outputText value="Deleted"/>
+                </f:facet>
+                <h:outputText value="#{post.deleted}"/>
+            </p:column>
+
+            <p:column styleClass="p-text-right">
+                <f:facet name="header">
+                    <h:outputText value="User Name"/>
+                </f:facet>
+                <h:outputText value="#{post.user.name}"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
