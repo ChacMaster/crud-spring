@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+</h:head>
+
+<h:body style="margin-left:50px">
+    <h:form>
+    <h2>PrimeFaces Linear Chart Example</h2>
+
+    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" keepAlive="false"/>
+
+    <p:panel header="Header" toggleable="true" closable="true" toggleSpeed="500"
+             closeSpeed="500" widgetVar="panel">
+
+        <p:ajax event="close" listener="#{indexController.onClose}" update="msgs"/>
+        <p:ajax event="toggle" listener="#{indexController.onToggle}" update="msgs"/>
+
+        <p class="p-m-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="pi pi-clone" onclick="PF('panel').toggle()"/>
+                    <p:menuitem value="Remove" url="#" icon="pi pi-times" onclick="PF('panel').close()"/>
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+        <p:skeleton />
+    </p:panel>
+
+    <p:chart type="line" model="#{indexController.lineModel}" style="height:400px;width:600px"/>
+    </h:form>
+</h:body>
+</html>
