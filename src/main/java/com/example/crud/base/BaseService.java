@@ -1,5 +1,6 @@
 package com.example.crud.base;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,11 +12,11 @@ import org.springframework.data.jpa.domain.Specification;
 import com.example.crud.i18n.Messages;
 import com.example.crud.i18n.RuleException;
 
-public abstract class BaseService<I, E extends BaseEntity<I>, R extends BaseRepository<E, I>> {
+public abstract class BaseService<I extends Serializable, E extends BaseEntity<I>, R extends BaseRepository<E, I>> {
 
 	public final R repository;
 
-	public BaseService(R repository) {
+	protected BaseService(R repository) {
 		this.repository = repository;
 	}
 

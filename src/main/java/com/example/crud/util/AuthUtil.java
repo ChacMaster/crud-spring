@@ -7,6 +7,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 public class AuthUtil {
 
+	private AuthUtil() {
+		throw new IllegalStateException("Utility class");
+	}
+
 	public static String getUserName() {
 		if (SecurityContextHolder.getContext() == null || SecurityContextHolder.getContext().getAuthentication() == null
 				|| "anonymousUser".equals(SecurityContextHolder.getContext().getAuthentication().getPrincipal())) {

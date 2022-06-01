@@ -73,14 +73,14 @@ public class PostMapper {
 		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.ID));
 		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.TITLE));
 		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.BODY));
-		xlsx.createCell(row, column++, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.CREATED_AT));
+		xlsx.createCell(row, column, cellStyle).setCellValue(MessageFactory.getLabel(labelPrefix + Post_.CREATED_AT));
 		for (var item : data) {
 			column = 0;
 			row = sheet.createRow(line++);
 			xlsx.createCell(row, column++, cellStyle).setCellValue(item.getId());
 			xlsx.createCell(row, column++, cellStyle).setCellValue(item.getTitle());
 			xlsx.createCell(row, column++, cellStyle).setCellValue(item.getBody());
-			xlsx.createCell(row, column++, dtTimeStyle).setCellValue(item.getCreatedAt());
+			xlsx.createCell(row, column, dtTimeStyle).setCellValue(item.getCreatedAt());
 		}
 		sheet.autoSizeColumn(1);
 		sheet.setColumnWidth(2, 50 * 256);

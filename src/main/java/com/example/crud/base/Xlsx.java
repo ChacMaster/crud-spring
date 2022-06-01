@@ -28,9 +28,10 @@ public class Xlsx {
 	}
 
 	public ResponseEntity<byte[]> export() {
-		var bos = new ByteArrayOutputStream();
-		try {
+		byte[] file;
+		try (var bos = new ByteArrayOutputStream()) {
 			this.workbook.write(bos);
+			file = bos.toByteArray();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuleException("Erro ao gerar XLSX");
@@ -41,11 +42,11 @@ public class Xlsx {
 				e.printStackTrace();
 			}
 		}
-		return Xlsx.toResponseEntity(this.filename, bos.toByteArray());
+		return Xlsx.toResponseEntity(this.filename, file);
 	}
 
 	public XSSFCell createCell(XSSFRow row, Integer column, XSSFCellStyle style) {
-		var cell = row.createCell(column++);
+		var cell = row.createCell(column);
 		cell.setCellStyle(style);
 		return cell;
 	}

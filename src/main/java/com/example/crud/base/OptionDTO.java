@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OptionDTO<I> implements Serializable {
+public class OptionDTO<I extends Serializable> implements Serializable {
 
 	private static final long serialVersionUID = -914698292833381449L;
 	private I key;
 	private String value;
 
-	public static <I> OptionDTO<I> of(BaseEntity<I> entity) {
+	public static <I extends Serializable> OptionDTO<I> of(BaseEntity<I> entity) {
 		if (entity == null || entity.getId() == null) {
 			return null;
 		}

@@ -2,7 +2,6 @@ package com.example.crud.web.users;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -61,7 +60,7 @@ public class UserController {
 	public List<UserListItemDTO> listAll(Optional<UserFilter> filter,
 			@Parameter(hidden = true) @SortDefault(sort = "id", direction = Direction.ASC) Sort sort) {
 		var spec = filter.map(mapper::toSpec).orElse(null);
-		return this.service.findAll(spec, sort).stream().map(mapper::toListItemDto).collect(Collectors.toList());
+		return this.service.findAll(spec, sort).stream().map(mapper::toListItemDto).toList();
 	}
 
 	@ResponseStatus(HttpStatus.OK)

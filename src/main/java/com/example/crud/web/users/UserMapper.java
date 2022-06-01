@@ -1,10 +1,10 @@
 package com.example.crud.web.users;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 import javax.persistence.criteria.Predicate;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.Specification;
@@ -46,15 +46,17 @@ public class UserMapper {
 
 	public UserListItemDTO toListItemDto(User entity) {
 		var dto = this.mapper.map(entity, UserListItemDTO.class);
-		dto.setPosts(entity.getPosts().isEmpty() ? null
-				: entity.getPosts().stream().map(OptionDTO::of).collect(Collectors.toList()));
+		if (CollectionUtils.isNotEmpty(entity.getPosts())) {
+			dto.setPosts(entity.getPosts().stream().map(OptionDTO::of).toList());
+		}
 		return dto;
 	}
 
 	public UserFormDTO toFormDto(User entity) {
 		var dto = this.mapper.map(entity, UserFormDTO.class);
-		dto.setPosts(entity.getPosts().isEmpty() ? null
-				: entity.getPosts().stream().map(OptionDTO::of).collect(Collectors.toList()));
+		if (CollectionUtils.isNotEmpty(entity.getPosts())) {
+			dto.setPosts(entity.getPosts().stream().map(OptionDTO::of).toList());
+		}
 		return dto;
 	}
 

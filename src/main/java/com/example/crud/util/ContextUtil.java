@@ -6,7 +6,11 @@ public class ContextUtil {
 
 	private static ApplicationContext context;
 
-	public static ApplicationContext getApplicationContext() {
+	private ContextUtil() {
+		throw new IllegalStateException("Utility class");
+	}
+
+	public static ApplicationContext getContext() {
 		return context;
 	}
 

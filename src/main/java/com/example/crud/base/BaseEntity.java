@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BaseEntity<I> implements Serializable {
+public abstract class BaseEntity<I extends Serializable> implements Serializable {
 
 	private static final long serialVersionUID = -9067577225280177408L;
 
